@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <title>Pedal Hub</title>
+  <style>
+    .navbar-brand img {
+        margin-right: 30px;
+    }
+
+    .navbar-nav .nav-link img {
+        margin-right: 20px;
+    }
+
+    .jumbotron {
+        background-size: cover;
+        padding: 50px 0; 
+        color: black; 
+        text-align: center; 
+    }
+
+    .jumbotron h1 {
+        font-size: 10rem; 
+    }
+
+    .jumbotron p {
+        font-size: 5rem;
+    }
+</style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm bg-secondary navbar-secondary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/"><img src="images/Pedal_Hub_Logo.png" alt="Pedal Hub Logo" width="200px"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/addEvent"><img src="images/Add_New_Event.png" alt="Add New Event" width="100px"></a>
+            </li> 
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container-fluid">
+        <h1 class="display-4">Pedal Hub</h1>
+        <p class="lead">RP's very own cycling club.</p>
+      </div>
+    </div>
+
+    <br>
+  
+  <div class="container">
+    <br>
+    <div class="text-center"><h2><img src="images/Header.png" alt="Header" width="1000px"></h2></div>
+    <br>
+    
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img class="d-block w-100" src="https://www.ricemedia.co/wp-content/uploads/2023/07/image5.jpg" alt="First slide">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="https://static.thehoneycombers.com/wp-content/uploads/sites/2/2017/06/Blaze-the-Trail_Mountain-Biking_2-1.jpg" alt="Second slide">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="https://imgsrv2.voi.id/Lz3P2KVws9hPbkuQjlOy4dbdFusnAUB8R0vzHyE_I-g/auto/1200/675/sm/1/bG9jYWw6Ly8vcHVibGlzaGVycy81NzI0My8yMDIxMDYwNzE3NTQtbWFpbi5jcm9wcGVkXzE2MjMwNjMyOTcuanBn.jpg" alt="Third slide">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <% for(let i=0; i < events.length; i++) { %>
+        <div class="col">
+          <div class="card h-100">
+            <img class="card-img-top" src="<%= events[i].image %>" alt="Event image">
+            <div class="card-body">
+              <h5 class="card-title"><a href="/event/<%= events[i].eventId %>"><%= events[i].name %></a></h5>
+              <p class="card-text"><%= events[i].eventDetails %></p>
+              <a href="/event/<%= events[i].eventId %>" class="btn btn-primary">View Event Details</a>
+              <a href="/editEvent/<%= events[i].eventId %>" class="btn btn-secondary">Edit</a>
+              <a href="/deleteEvent/<%= events[i].eventId %>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this event?')">Delete</a>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Event Date: <%= new Date(events[i].eventDate).toLocaleDateString('en-US', { month: 'long', day: '2-digit', year: 'numeric' }) %></small>
+            </div>
+          </div>
+        </div>
+      <% } %>
+    </div>
+  </div>
+
+</body>
+</html>
