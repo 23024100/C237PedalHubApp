@@ -18,10 +18,10 @@ const upload = multer({ storage: storage });
 
 // Create MySQL connection
 const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'pedalhubapp'
+    host: 'db4free.net',
+    user: 'nursarah',
+    password: 'password1',
+    database: 'pedalhub'
 });
 
 connection.connect((err) => {
